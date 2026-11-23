@@ -7,3 +7,13 @@ def obtener_series():
         return conn.execute(
             "SELECT * FROM series ORDER BY id"
         ).fetchall()
+
+
+def obtener_serie(id: int):
+    with conectar() as conn:
+        resultado = conn.execute(
+            "SELECT * FROM series WHERE id = %s",
+            (id,)
+        )
+
+        return resultado.fetchone()
