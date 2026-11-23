@@ -11,3 +11,9 @@ class SerieCreate(BaseModel):
     estado: Literal["En emisión", "Finalizada"]
     sinopsis: str
     imagen_url: str
+
+
+class SerieUpdate(BaseModel):
+    estado: Literal["En emisión", "Finalizada"]
+
+    imagen_url: str
