@@ -9,3 +9,16 @@ router = APIRouter()
 @router.get("/series")
 def listar_series():
     return obtener_series()
+
+
+@router.get("/series/{id}")
+def detalle_serie(id: int):
+    serie = obtener_serie(id)
+
+    if serie is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Serie no encontrada"
+        )
+
+    return serie
