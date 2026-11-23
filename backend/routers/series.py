@@ -22,3 +22,8 @@ def detalle_serie(id: int):
         )
 
     return serie
+
+
+@router.post("/series")
+def crear_serie(serie: SerieCreate):
+    return agregar_serie(serie)
