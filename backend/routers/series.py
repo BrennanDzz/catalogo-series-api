@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from schemas import SerieCreate
-from services.series_services import obtener_series, obtener_serie, agregar_serie
+from services.series_services import consultar_todas_series, consultar_serie_id, crear_serie
 
 
 router = APIRouter()
@@ -8,12 +8,12 @@ router = APIRouter()
 
 @router.get("/series")
 def listar_series():
-    return obtener_series()
+    return consultar_todas_series()
 
 
 @router.get("/series/{id}")
-def detalle_serie(id: int):
-    serie = obtener_serie(id)
+def buscar_serie(id: int):
+    serie = consultar_serie_id(id)
 
     if serie is None:
         raise HTTPException(
@@ -25,5 +25,5 @@ def detalle_serie(id: int):
 
 
 @router.post("/series")
-def crear_serie(serie: SerieCreate):
-    return agregar_serie(serie)
+def agregar_serie(serie: SerieCreate):
+    return crear_serie(serie)
