@@ -1,5 +1,5 @@
 from database import conectar
-from schemas import SerieCreate
+from schemas import SerieCreate, SerieUpdate
 
 
 def consultar_todas_series():
@@ -45,6 +45,21 @@ def crear_serie(serie: SerieCreate):
         serie.sinopsis,
         serie.imagen_url
     )
+
+    with conectar() as conn:
+        resultado = conn.execute(query, parametros)
+        return resultado.fetchone()
+
+    def editar_serie(id: int, serie: SerieUpdate):
+    query = """
+            UPDATE series
+            SET estado = %s,
+                imagen_url = %s
+            WHERE id = %s
+            RETURNING *
+        """
+
+    parametros = (serie.estado, serie.imagen_url, id)
 
     with conectar() as conn:
         resultado = conn.execute(query, parametros)
