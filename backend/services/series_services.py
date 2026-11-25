@@ -50,7 +50,8 @@ def crear_serie(serie: SerieCreate):
         resultado = conn.execute(query, parametros)
         return resultado.fetchone()
 
-    def editar_serie(id: int, serie: SerieUpdate):
+
+def editar_serie(id: int, serie: SerieUpdate):
     query = """
             UPDATE series
             SET estado = %s,
