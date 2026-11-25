@@ -65,3 +65,12 @@ def editar_serie(id: int, serie: SerieUpdate):
     with conectar() as conn:
         resultado = conn.execute(query, parametros)
         return resultado.fetchone()
+
+
+def eliminar_serie(id: int):
+    with conectar() as conn:
+        resultado = conn.execute(
+            "DELETE FROM series WHERE id = %s RETURNING *",
+            (id,)
+        )
+        return resultado.fetchone()
