@@ -5,7 +5,7 @@ from typing import Literal
 class SerieCreate(BaseModel):
     titulo: str
     anio_estreno: int = Field(ge=1900, le=2030)
-    temporadas: int = Field(ge=1, le=10)
+    temporadas: int = Field(ge=1, le=20)
     genero: str
     plataforma: str
     estado: Literal["En emisión", "Finalizada"]
@@ -16,3 +16,4 @@ class SerieCreate(BaseModel):
 class SerieUpdate(BaseModel):
     estado: Literal["En emisión", "Finalizada"]
     imagen_url: str
+    temporadas: int = Field(ge=1, le=20)
