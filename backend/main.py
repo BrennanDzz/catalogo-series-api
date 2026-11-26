@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from routers.series import router as series_router
 
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -12,3 +13,11 @@ def inicio():
 
 
 app.include_router(series_router)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
