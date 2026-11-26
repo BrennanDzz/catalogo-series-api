@@ -55,12 +55,13 @@ def editar_serie(id: int, serie: SerieUpdate):
     query = """
             UPDATE series
             SET estado = %s,
-                imagen_url = %s
+                imagen_url = %s,
+                temporadas = %s
             WHERE id = %s
             RETURNING *
         """
 
-    parametros = (serie.estado, serie.imagen_url, id)
+    parametros = (serie.estado, serie.imagen_url, serie.temporadas, id)
 
     with conectar() as conn:
         resultado = conn.execute(query, parametros)
