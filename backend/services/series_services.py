@@ -61,7 +61,7 @@ def editar_serie(id: int, serie: SerieUpdate):
             RETURNING *
         """
 
-    parametros = (serie.estado, serie.imagen_url, id)
+    parametros = (serie.estado, serie.imagen_url, serie.temporadas, id)
 
     with conectar() as conn:
         resultado = conn.execute(query, parametros)
