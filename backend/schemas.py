@@ -1,9 +1,10 @@
-from pydantic import BaseModel, Field
-from typing import Literal
+from pydantic import BaseModel, Field, StringConstraints
+from typing import Annotated, Literal
 
 
 class SerieCreate(BaseModel):
-    titulo: str
+    titulo: Annotated[str, StringConstraints(
+        strip_whitespace=True, min_length=1, max_length=100)]
     anio_estreno: int = Field(ge=1900, le=2030)
     temporadas: int = Field(ge=1, le=20)
     genero: str
