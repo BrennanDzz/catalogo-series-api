@@ -56,6 +56,7 @@ def editar_serie(id: int, serie: SerieUpdate):
             UPDATE series
             SET estado = %s,
                 imagen_url = %s
+                temporadas = %s
             WHERE id = %s
             RETURNING *
         """
