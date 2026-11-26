@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 from schemas import SerieCreate, SerieUpdate
 from services.series_services import consultar_todas_series, consultar_serie_id, crear_serie, editar_serie, eliminar_serie
 
@@ -24,10 +24,9 @@ def buscar_serie(id: int):
     return serie
 
 
-@router.post("/series")
+@router.post("/series", status_code=status.HTTP_201_CREATED)
 def agregar_serie(serie: SerieCreate):
     return crear_serie(serie)
-
 
 
 @router.put("/series/{id}")
@@ -43,7 +42,7 @@ def actualizar_serie(id: int, serie: SerieUpdate):
     return serie_actualizada
 
 
-@router.delete("/series/{id}")
+@router.delete("/series/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def borrar_serie(id: int):
     serie_eliminada = eliminar_serie(id)
 
